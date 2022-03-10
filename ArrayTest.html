@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+
+
+
+
+
+
+
+const users = [
+    {id : 1,name:"ID",age:36},
+    {id : 2,name:"BJ",age:32},
+    {id : 3,name:"JM",age:32},
+    {id : 4,name:"PJ",age:27},
+    {id : 5,name:"HA",age:25},
+    {id : 6,name:"JE",age:26},
+    {id : 7,name:"JI",age:31},
+    {id : 8,name:"MP",age:23},
+]
+// 이 js 파일의 목표 : map 과 filter 함수에 들어있는 중복 코드를 없앤다.
+
+
+function _filter(users,predi){ 
+    var new_list = []; 
+    _each(users,(val)=> {
+    if(predi(val)){ 
+        new_list.push(val);
+    }
+    return new_list;
+})
+        
+    
+
+    return new_list;
+}
+
+function _map(list,mapper){ 
+    var new_list = []; 
+    _each(list,function(val){
+        new_list.push(mapper(val));
+    })
+    return new_list;
+}
+
+
+function _each(list,iter){
+    for(var i = 0; i<list.length; i++){
+        iter(list[i]);
+    }
+    return list;
+}
+
+        console.log(_map(document.querySelectorAll("*"),function(node){
+            return node.nodeName; 
+        })) //다시 만든 map 같은경우 array 가 아니여도 length 에 맞는 키값이( 0,1,2,3,4,5,6)존재하면 돌아감.
+
+        console.log(document.querySelectorAll("*").map(function(node){
+            return node.nodeName;
+        })) // document.querySelectorAll은 array 가 아니여서 기존의 Map 함수가 사용잉안됨. =>타입을 확인했을때 NodeList 로 나옴.
+        console.log("test");
+
+        //위처럼 데이터가 먼저 나오는 함수일 경우 (ex> array.map (array 형이 먼저 존재해야 함수가 나온다.(객체지향)))
+        //함수가 먼저 나오는 함수일 경우 (ex> _map (데이터가 있기 전부터 함수가 존재 , 함수에 맞게 데이터를 넣는다. (함수지향)))
+    </script>
+</body>
+</html>
